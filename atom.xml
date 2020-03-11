@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-10T13:53:25.174Z</updated>
+  <updated>2020-03-11T11:36:43.452Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VINS预计分推导</title>
+    <link href="http://yoursite.com/2020/03/11/VINS%E9%A2%84%E8%AE%A1%E5%88%86%E6%8E%A8%E5%AF%BC/"/>
+    <id>http://yoursite.com/2020/03/11/VINS%E9%A2%84%E8%AE%A1%E5%88%86%E6%8E%A8%E5%AF%BC/</id>
+    <published>2020-03-11T10:10:07.000Z</published>
+    <updated>2020-03-11T11:36:43.452Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.sohu.com/a/344040718_100007727" target="_blank" rel="noopener">VINS 中的 IMU 预积分推导和代码解读</a></p><hr><p>VIO 中,如果在世界坐标系中对 IMU 进行积分,积分项中包含体坐标系相对于世界坐标系的瞬时旋转矩阵。然而,在优化位姿时,关键帧时刻体坐标系相对于世界坐标系的旋转矩阵会发生变化,那么需要对 IMU 重新进行积分。预积分就是为了避免这种重复积分。IMU 预积分将参考坐标系改为前一帧的体坐标系,从而积出了两帧之间的相对运动。</p><hr><h3 id="预计分"><a href="#预计分" class="headerlink" title="预计分"></a>预计分</h3><p>将第 k 帧和第 k+1 帧之间的所有 IMU 进行积分,可得第 k+1 帧的位置、速度和旋转(PVQ)，作为视觉估计的初始值，示意图如下：<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20190928/0cbf0a39e02844d29c8f31de2b6f4960.png" alt=""></p><p>加速计与陀螺仪测量值通过式（8）计算。</p><script type="math/tex; mode=display">\begin{equation}\left\{\begin{matrix}\begin{aligned}&\hat{\mathbf{a}}_t=\mathbf{a}_t+\mathbf{b}_{\mathbf{a}_t}+\mathbf{R}_w^t\mathbf{g}^w+\mathbf{n}_{\mathbf{a}}\\&\hat{\mathbf{w}}_t=\mathbf{w}_t+\mathbf{b}_{w_t}+\mathbf{n}_w\end{aligned}\end{matrix}\right.\end{equation}</script><p>其中$\mathbf{n}_a,\mathbf{n}_b$为随机噪声，该噪声符合高斯分布。设：</p><script type="math/tex; mode=display">\begin{equation}\left\{\begin{matrix}\mathbf{n}_a\sim N(\mathbf{\mathbf{\sigma}}_a^2)\\\mathbf{n}_b\sim N(\mathbf{\sigma}_w^2) \end{matrix}\right.\end{equation}</script><p>$\mathbf{b}_a,\mathbf{b}_w$表示加速计和陀螺仪的偏差。认为该偏差为随机游走，即微分符合高斯分布。</p><script type="math/tex; mode=display">\begin{equation}\left\{\begin{matrix}\mathbf{\dot{b}_{a_t}}=\mathbf{n}_{b_a}\\\mathbf{\dot{b}_{w_t}}=\mathbf{n}_{b_w} \end{matrix}\right.\end{equation}</script><p>PVQ对时间的导数可写成：</p><script type="math/tex; mode=display">\begin{equation}\left\{\begin{aligned}&\dot{\mathbf{p}}_{b_t}^w=\mathbf{v}_t^w\\&\dot{\mathbf{v}}_t^w=\dot{\mathbf{a}}_t^w\\&\dot{\mathbf{q}}_{b_t}^w=\mathbf{q}_{b_t}^w\otimes d\end{aligned}\right.\end{equation}</script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://www.sohu.com/a/344040718_100007727&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;VINS 中的 IMU 预积分推导和代码解读&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;VIO 中,如果在世界坐标系
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>FirstArticle</title>
